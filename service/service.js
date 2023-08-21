@@ -51,7 +51,7 @@ const deleteItem = async (itemId) => {
 
         const updatedItems = items.map(element => {
             if (element.id == itemId) {
-                
+
             } else {
                 return element;
             }
@@ -66,4 +66,48 @@ const deleteItem = async (itemId) => {
 };
 
 
-module.exports = {getItems, postItem, editItem, deleteItem};
+const addQuantity = async (itemId) => {
+    try {
+        const items = await itemDal.getItems();
+
+        const updatedItems = items.map(element => {
+            if (element.id == itemId) {
+                element.quantity += 1 ;
+                return element;
+            } else {
+                return element;
+            }
+        });
+
+        itemDal.postItem(updatedItems);
+
+    } catch (error) {
+        console.log(error);
+        throw error
+    }
+};
+
+
+const subQuantity = async (itemId) => {
+    try {
+        const items = await itemDal.getItems();
+
+        const updatedItems = items.map(element => {
+            if (element.id == itemId) {
+                element.quantity -= 1 ;
+                return element;
+            } else {
+                return element;
+            }
+        });
+
+        itemDal.postItem(updatedItems);
+
+    } catch (error) {
+        console.log(error);
+        throw error
+    }
+};
+
+
+module.exports = {getItems, postItem, editItem, deleteItem, addQuantity, subQuantity};

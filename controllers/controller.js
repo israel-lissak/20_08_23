@@ -65,4 +65,25 @@ const deleteItem = async (req, res) => {
 }
 
 
-module.exports = {getItems, postItem, getItemsById, editItem, deleteItem};
+const addQuantity = async (req, res) => {
+    try {
+        itemsService.addQuantity(req.params.id);
+        res.send('quantity increased by 1');
+    } catch {
+        // console.log(error);
+        res.status(500).send("Internal Server Error");
+    }
+}
+
+
+const subQuantity = async (req, res) => {
+    try {
+        itemsService.subQuantity(req.params.id);
+        res.send('quantity decreased by 1');
+    } catch {
+        // console.log(error);
+        res.status(500).send("Internal Server Error");
+    }
+}
+
+module.exports = {getItems, postItem, getItemsById, editItem, deleteItem, addQuantity, subQuantity};

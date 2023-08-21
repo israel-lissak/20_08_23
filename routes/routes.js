@@ -11,6 +11,10 @@ router.post('/', itemsControllers.postItem);
 
 router.post('/:id', itemsControllers.editItem);
 
+router.post('/add/:id', itemsControllers.addQuantity);
+
+router.post('/sub/:id', itemsControllers.subQuantity);
+
 router.delete('/:id', itemsControllers.deleteItem);
 
 
